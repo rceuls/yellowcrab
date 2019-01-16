@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.http import HttpResponse
-from .models import Report, ReportLine
+from .models import Report, ReportLine, Zone
 from .render import PdfRender
 import datetime
 
@@ -35,4 +35,4 @@ class ReportLineAdmin(admin.ModelAdmin):
 
 admin.site.register(Report, ReportAdmin)
 admin.site.register(ReportLine, ReportLineAdmin)
-
+admin.site.register(Zone)
