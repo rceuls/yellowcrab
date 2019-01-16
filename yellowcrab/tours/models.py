@@ -23,9 +23,13 @@ class ReportLine(models.Model):
     report = models.ForeignKey(Report, on_delete=models.CASCADE)
     zone = models.ForeignKey(Zone, on_delete=models.SET_NULL, blank=True, null=True)
 
-    def __str__(self):
-        suffix = ""
-        if len(self.description) > 10:
-            suffix = "..."
+    def short_description(self):
+        if self.description is None:
+            return None
+        elif len(self.description) > 10:
+            return f"{str(self.description)[:7]}..."
+        else:
+            return str(self.description)
 
-        return f"{str(self.description)[:10]}{suffix} on {self.report.description}"
+    def __str__(self):
+        return f"{self.short_description()} on {self.report.description}"
