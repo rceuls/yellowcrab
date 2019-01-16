@@ -22,10 +22,9 @@ jobs:
             - "/usr/local/lib/python3.6/site-packages"
       - run:
           command: |
-            cd yellowcrab
-            python manage.py test 
+            python yellowcrab/manage.py test 
       - store_test_results: # Upload test results for display in Test Summary: https://circleci.com/docs/2.0/collect-test-data/
-          path: yellowcrab/test-results
+          path: test-results
       - store_artifacts: # Upload test summary for display in Artifacts: https://circleci.com/docs/2.0/artifacts/
-          path: yellowcrab/test-results
+          path: test-results
           destination: tr1
