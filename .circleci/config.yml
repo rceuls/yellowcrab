@@ -4,8 +4,6 @@ jobs:
     working_directory: ~/circleci-yellowcrab-django
     docker:
       - image: circleci/python:3.6.7
-        environment:
-          PIPENV_VENV_IN_PROJECT: true
     steps:
       - checkout  # checkout source code to working directory
       - run: sudo chown -R circleci:circleci /usr/local/bin
@@ -15,8 +13,7 @@ jobs:
           key: deps9-{{ .Branch }}-{{ checksum "Pipfile.lock" }}
       - run:
           command: |
-            sudo pip install pipenv
-            pipenv install
+            pip install -r requirements.txt
       - save_cache: # cache Python dependencies using checksum of Pipfile as the cache-key
           key: deps9-{{ .Branch }}-{{ checksum "Pipfile.lock" }}
           paths:
@@ -26,7 +23,7 @@ jobs:
       - run:
           command: |
             cd yellowcrab
-            pipenv run "python manage.py test" 
+            python manage.py test 
       - store_test_results: # Upload test results for display in Test Summary: https://circleci.com/docs/2.0/collect-test-data/
           path: test-results
       - store_artifacts: # Upload test summary for display in Artifacts: https://circleci.com/docs/2.0/artifacts/
