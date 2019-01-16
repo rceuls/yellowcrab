@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "tours.apps.ToursConfig",
     "stdimage",
+    "django_nose",
 ]
 
 MIDDLEWARE = [
@@ -117,4 +118,6 @@ STATIC_URL = "/static/"
 
 MEDIA_URL = "/uploads/"
 MEDIA_ROOT = os.path.join(BASE_DIR, "uploads")
+
+TEST_RUNNER = "django_nose.NoseTestSuiteRunner"
 
