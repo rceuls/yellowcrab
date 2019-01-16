@@ -28,4 +28,4 @@ class ReportLine(models.Model):
         if len(self.description) > 10:
             suffix = "..."
 
-        return f"{self.description[:10]}{suffix} on {self.report.description}"
+        return f"{str(self.description)[:10]}{suffix} on {self.report.description}"
